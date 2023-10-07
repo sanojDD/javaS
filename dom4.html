@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM4</title>
+</head>
+
+<body style="background-color: #212121; color: white">
+  <ul class="language">
+    <li>javascript</li>
+  </ul>
+
+</body>
+<script>
+  //problemsin traversing to append the data in this method (non optimizing)
+  function addLanguage(langName) {
+    const li = document.createElement("li")//create li
+    li.innerHTML = `${langName}`//add element to li
+    document.querySelector(".language"). //select class to append the newly created element
+      appendChild(li) //append to the class
+
+  }
+  addLanguage("python")
+  addLanguage("Typescript")
+
+  //optimized process
+  //no need to traverse :create new node directly and append the child
+
+  function addOptiLang(langName) {
+    const li = document.createElement("li")
+    li.appendChild(document.createTextNode(langName))
+    document.querySelector(".language").appendChild(li)
+  }
+
+  addOptiLang("c++")
+  //edit 1
+
+  const secLang = document.querySelector("li:nth-child(2)")
+  // secLang.innerHTML = "Mojo"
+
+  //second approach
+  const newLi = document.createElement("li")
+  newLi.textContent = "Mojo"
+  secLang.replaceWith (newLi)
+
+  //edit 2
+  const firstLang = document.querySelector('li:first-child')
+  firstLang.outerHTML = '<li> Typescript1 </li>'
+
+  //remove
+  const lastLang = document.querySelector("li:last-child")
+  lastLang.remove()
+
+
+</script>
+
+</html>
